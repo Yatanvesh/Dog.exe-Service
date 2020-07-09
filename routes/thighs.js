@@ -3,10 +3,18 @@ const router = express.Router();
 
 const Scraper = require('images-scraper');
 const ThighModel = require('../models/Thigh');
+const Analytics = require('../models/Analytics');
 
 router.get('/', async function (req, res, next) {
   try {
-    console
+    const ipInfo = req.ipInfo;
+    const {city} = ipInfo;
+    const {ip} = req;
+    Analytics.create({
+      location: city,
+      ipAddress: ip,
+      service: 'Thigh'
+    });
     const randomThigh = await ThighModel.getRandom();
     res.json({url: randomThigh});
   } catch (err) {

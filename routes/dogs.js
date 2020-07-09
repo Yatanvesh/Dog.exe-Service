@@ -3,9 +3,19 @@ const router = express.Router();
 
 const Scraper = require('images-scraper');
 const DogModel = require('../models/Dog');
+const Analytics = require('../models/Analytics');
 
 router.get('/', async function (req, res, next) {
   try {
+    const ipInfo = req.ipInfo;
+    const {city} = ipInfo;
+    const {ip} = req;
+    Analytics.create({
+      location: city,
+      ipAddress: ip,
+      service: 'Dog'
+    });
+
     const randomDog = await DogModel.getRandom();
     res.json({url: randomDog});
   } catch (err) {
