@@ -1,6 +1,6 @@
 const db = require('../config/db');
 
-const Model = db.model('Dog', {
+const Model = db.model('Thigh', {
   _id: {
     type: String,
     required: true,
@@ -36,7 +36,7 @@ async function create(url) {
 
 async function remove(_id) {
   const model = await get(_id);
-  if (!model) throw new Error("No dog found");
+  if (!model) throw new Error("No thigh found");
   await Model.deleteOne({
     _id
   });
