@@ -14,7 +14,7 @@ router.get('/', async function (req, res, next) {
   }
 });
 
-router.get('/remaining', async function (req, res, next) {
+router.get('/count', async function (req, res, next) {
   try {
     const count = await DogModel.getRemaining();
     res.json({count});
