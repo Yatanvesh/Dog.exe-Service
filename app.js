@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const expressip = require('express-ip');
+const useragent = require('express-useragent');
 
 var indexRouter = require('./routes/index');
 var dogsRouter = require('./routes/dogs');
@@ -12,7 +13,7 @@ var analyticsRouter = require('./routes/analytics');
 
 var app = express();
 app.use(expressip().getIpInfoMiddleware);
-
+app.use(useragent.express());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');

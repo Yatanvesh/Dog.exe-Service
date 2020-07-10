@@ -18,7 +18,7 @@ async function populuateDogs() {
 }
 async function populuateThighs() {
 
-  const thighs = await google.scrape('Sexy thighs', 2000);
+  const thighs = await google.scrape('Anime thighs aesthetic', 2000);
   thighs.map(async (thigh, index) => {
     console.log("Saving", index, thigh);
     if (!!thigh.url)
