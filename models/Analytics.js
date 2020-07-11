@@ -5,13 +5,25 @@ const Model = db.model('Analytics', {
     type: Date,
     default: Date.now
   },
-  ipAddress: {
+  ip: {
     type: String,
     default: ''
   },
-  location: {
+  city: {
     type: String,
     default: ''
+  },
+  country: {
+    type: String,
+    default: ''
+  },
+  region: {
+    type: String,
+    default: ''
+  },
+  ll:{
+    type:Array,
+    default:[]
   },
   service: {
     type: String,
@@ -28,7 +40,12 @@ async function get(_id) {
 }
 
 async function getAll() {
-  return await Model.find({}).sort({timeAccessed:-1});
+  return await Model.find({}).sort({timeAccessed: -1});
+}
+
+
+async function getDogs() {
+  return await Model.find({service: 'Dog'}).sort({timeAccessed: -1});
 }
 
 async function create(fields) {
@@ -46,5 +63,6 @@ module.exports = {
   create,
   getAll,
   count,
+  getDogs,
   model: Model
 }

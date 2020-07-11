@@ -8,15 +8,10 @@ const Analytics = require('../models/Analytics');
 router.get('/', async function (req, res, next) {
   try {
     const ipInfo = req.ipInfo;
-    const {city} = ipInfo;
-    const {ip} = req;
-    Analytics.create({
-      location: city,
-      ipAddress: ip,
-      service: 'Thigh'
-    });
-    const {url,count} = await ThighModel.getRandom();
-    res.json({url,count});
+    Analytics.create(ipInfo);
+
+    const {url, count} = await ThighModel.getRandom();
+    res.json({url, count});
   } catch (err) {
     console.log("error", err);
     res.status(500).json({error: err});
@@ -45,7 +40,7 @@ router.get('/populate', async function (req, res, next) {
     });
     const thighs = await google.scrape('beatiful thighs models', 1000);
     thighs.map(async thigh => {
-      if (!!thigh.url){
+      if (!!thigh.url) {
         await ThighModel.create(thigh.url)
       }
     });
