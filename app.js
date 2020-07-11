@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const expressip = require('express-ip');
 const useragent = require('express-useragent');
+var cors = require('cors')
 
 var indexRouter = require('./routes/index');
 var dogsRouter = require('./routes/dogs');
@@ -12,6 +13,7 @@ var thighsRouter = require('./routes/thighs');
 var analyticsRouter = require('./routes/analytics');
 
 var app = express();
+app.use(cors());
 app.use(expressip().getIpInfoMiddleware);
 app.use(useragent.express());
 // view engine setup
