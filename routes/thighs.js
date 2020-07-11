@@ -8,7 +8,7 @@ const Analytics = require('../models/Analytics');
 router.get('/', async function (req, res, next) {
   try {
     const ipInfo = req.ipInfo;
-    Analytics.create(ipInfo);
+    Analytics.create({...ipInfo, service:'Thigh'});
 
     const {url, count} = await ThighModel.getRandom();
     res.json({url, count});
