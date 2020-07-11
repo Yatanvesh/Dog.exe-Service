@@ -15,8 +15,8 @@ router.get('/', async function (req, res, next) {
       ipAddress: ip,
       service: 'Thigh'
     });
-    const randomThigh = await ThighModel.getRandom();
-    res.json({url: randomThigh});
+    const {url,count} = await ThighModel.getRandom();
+    res.json({url,count});
   } catch (err) {
     console.log("error", err);
     res.status(500).json({error: err});

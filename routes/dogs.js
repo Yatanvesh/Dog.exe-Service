@@ -16,8 +16,8 @@ router.get('/', async function (req, res, next) {
       service: 'Dog'
     });
 
-    const randomDog = await DogModel.getRandom();
-    res.json({url: randomDog});
+    const {url,count} = await DogModel.getRandom();
+    res.json({url, count});
   } catch (err) {
     console.log("error", err);
     res.status(500).json({error: err});

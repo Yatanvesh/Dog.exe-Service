@@ -21,7 +21,7 @@ async function getRandom() {
   let randomDoc = await Model.findOne().skip(random);
   const url = randomDoc._id;
   await remove(url);
-  return url;
+  return {url,count:count-1};
 }
 async function getRemaining() {
   return await Model.countDocuments();
