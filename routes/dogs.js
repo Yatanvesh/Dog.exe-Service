@@ -8,6 +8,7 @@ const Analytics = require('../models/Analytics');
 router.get('/', async function (req, res, next) {
   try {
     const ipInfo = req.ipInfo;
+    console.log('ipInfo', req.ipInfo);
     const {city} = ipInfo;
     const {ip} = req;
     Analytics.create({
@@ -26,6 +27,7 @@ router.get('/', async function (req, res, next) {
 
 router.get('/count', async function (req, res, next) {
   try {
+    console.log('ipInfo', req.ipInfo);
     const count = await DogModel.getRemaining();
     res.json({count});
   } catch (err) {
