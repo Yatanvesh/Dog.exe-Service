@@ -21,7 +21,7 @@ const constructLocation = (lon, lat) => {
 
 }
 const addMarker = (lon, lat) => {
-  markers.addMarker(new OpenLayers.Marker(constructLocation(77.58, 12.978)));
+  markers.addMarker(new OpenLayers.Marker(constructLocation(lon, lat)));
 }
 
 initOpenMap = () => {
@@ -34,7 +34,7 @@ initOpenMap = () => {
       map.getProjectionObject() // to Spherical Mercator Projection
     );
 
-  var zoom = 10;
+  var zoom = 5;
   markers = new OpenLayers.Layer.Markers("Markers");
   map.addLayer(markers);
   map.setCenter(lonLat, zoom);
@@ -50,7 +50,6 @@ const loadData = async () => {
   document.querySelector('.requests').innerHTML = `${data.length} Requests`;
   console.log(data, data.length)
   data.map(({ll}) => addMarker(ll[1], ll[0]));
-  // document.querySelector('.timeline').innerHTML+='ds'
   data.map((request => {
     const {ip, city, region, ll, timeAccessed, service} = request;
     document.querySelector('.timeline').innerHTML +=
@@ -60,7 +59,7 @@ const loadData = async () => {
             <div>City: ${city}</div>
             <div>Region: ${region}</div>
             <div>Coordinates: ${ll.toString()}</div>
-            <div>Time Accessed: ${(new Date(timeAccessed)).toLocaleString() }</div>
+            <div>Time Accessed: ${(new Date(timeAccessed)).toLocaleString()}</div>
         </span></li>`
 
   }))
