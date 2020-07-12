@@ -26,6 +26,7 @@ const addMarker = (lon, lat) => {
 
 initOpenMap = () => {
   map = new OpenLayers.Map("mapdiv");
+
   map.addLayer(new OpenLayers.Layer.OSM());
 
   var lonLat = new OpenLayers.LonLat(77.59, 12.97)
